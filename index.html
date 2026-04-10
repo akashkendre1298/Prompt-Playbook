@@ -449,8 +449,7 @@ Rewrite it to be:
 
 Return ONLY the improved prompt. No explanation.`,
     examples:[
-      { filled: "You are a prompt engineer. Take this rough prompt:\n\n\"Write code to scrape a website\"\n\nRewrite it to be clearer, more specific, and output-driven. Add role framing, constraints, and desired output format. Return the improved prompt only.",
-        output: "You are a senior Python developer specializing in web scraping. Write a Python script using BeautifulSoup to scrape all product names and prices from [URL]. Requirements: handle pagination up to 5 pages, retry on 429, save results to products.json. Return only the working script with inline comments." }
+      { filled: "You are a prompt engineer. Take this rough prompt:\n\n\"Write code to scrape a website\"\n\nRewrite it to be clearer, more specific, and output-driven. Add role framing, constraints, and desired output format. Return the improved prompt only." }
     ]
   },
   {
@@ -473,8 +472,7 @@ Identify:
 
 Then rewrite the prompt to fix all issues. Show original vs improved side by side.`,
     examples:[
-      { filled: "Act as a prompt engineering expert. Audit this prompt:\n\n---\nWrite a blog post about remote work\n---\n\nIdentify ambiguities, missing constraints, missing context, likely failure modes, and hallucination risks. Then rewrite the prompt to fix all issues.",
-        output: "Issues found: (1) No audience specified — will write generic content (2) No word count — output could be 200 or 2000 words (3) No angle or argument — produces listicle filler (4) No tone — defaults to corporate-bland\n\nFixed prompt: You are a tech writer for senior engineers at remote-first companies. Write a 700-word contrarian blog post arguing that async communication makes teams slower, not faster. Tone: direct, evidence-based. Structure: claim → 2 supporting arguments → counterargument → resolution. No tips lists." }
+      { filled: "Act as a prompt engineering expert. Audit this prompt:\n\n---\nWrite a blog post about remote work\n---\n\nIdentify ambiguities, missing constraints, missing context, likely failure modes, and hallucination risks. Then rewrite the prompt to fix all issues." }
     ]
   },
   {
@@ -492,8 +490,7 @@ Then give your final, clean answer inside <answer> tags.
 
 Task: [YOUR TASK HERE]`,
     examples:[
-      { filled: "Before answering, reason through this carefully inside <thinking> tags. Break the problem into sub-problems, consider edge cases, check your assumptions, and identify where you might be wrong. Then give your final clean answer inside <answer> tags.\n\nTask: My React app re-renders 3x on every keystroke in a search input. How do I fix it?",
-        output: "<thinking>\nSub-problems: (1) Why is it re-rendering 3x? (2) Where is the state?\nAssumptions: useState is in a parent, value passed down as prop\nEdge case: if using useEffect with wrong deps it could chain\nLikely causes: state update in parent + context update + useEffect side effect\n</thinking>\n<answer>\nMost likely cause: your onChange updates state in a parent, which re-renders parent + child + any context consumers. Fix with: (1) useDeferredValue on the search term (2) move search state into the input component itself (3) check for any useEffect with the search value in deps that triggers another setState\n</answer>" }
+      { filled: "Before answering, reason through this carefully inside <thinking> tags. Break the problem into sub-problems, consider edge cases, check your assumptions, and identify where you might be wrong. Then give your final clean answer inside <answer> tags.\n\nTask: My React app re-renders 3x on every keystroke in a search input. How do I fix it?" }
     ]
   },
   {
@@ -513,8 +510,7 @@ Generate 5 diverse input/output example pairs. Requirements:
 - Make inputs realistic, not toy examples
 - Output pairs as: Input: ... → Output: ...`,
     examples:[
-      { filled: "I'm building a few-shot prompt for this task: 'Classify customer support tickets by urgency: critical, high, medium, low'\n\nTarget model: Claude\nOutput format: JSON\n\nGenerate 5 diverse input/output example pairs covering happy path, edge cases, and failure modes.",
-        output: "Input: 'URGENT: Production is down, all users getting 500 errors since 10min ago' → Output: {label: 'critical', reason: 'production outage affecting all users'}\n\nInput: 'My invoice from last month shows wrong amount' → Output: {label: 'medium', reason: 'billing issue, not time-critical'}\n\nInput: 'Can you add dark mode to the app?' → Output: {label: 'low', reason: 'feature request'}\n\nInput: 'I cannot log in and have a demo with a client in 1 hour' → Output: {label: 'critical', reason: 'time-sensitive, revenue impact'}\n\nInput: 'asjdhaksjdh nothing works everything broken!!!!' → Output: {label: 'high', reason: 'unclear but high frustration — needs triage'}" }
+      { filled: "I'm building a few-shot prompt for this task: 'Classify customer support tickets by urgency: critical, high, medium, low'\n\nTarget model: Claude\nOutput format: JSON\n\nGenerate 5 diverse input/output example pairs covering happy path, edge cases, and failure modes." }
     ]
   },
   {
@@ -535,8 +531,7 @@ Escalation rule: [WHAT TO DO WHEN UNSURE]
 
 Output the system prompt directly. Use XML tags to separate sections if helpful.`,
     examples:[
-      { filled: "Design a production system prompt for an AI assistant with these specs:\n\nRole: Senior code reviewer\nProduct context: In-IDE assistant for VS Code\nPrimary user: Mid-level developers shipping to production\nCore behaviors: Review for security, performance, readability; cite line numbers; explain the why behind every suggestion\nHard restrictions: Never rewrite entire files; never approve code with SQL injection risk; never skip security issues as 'minor'\nTone: Direct, technical, collegial\nOutput format: Markdown with severity tags",
-        output: "You are a senior software engineer acting as a code reviewer. You review code inside VS Code for developers shipping to production.\n\nFor every review:\n- Cite the exact line number for each issue\n- Explain WHY it's a problem, not just that it is\n- Tag each issue: [BLOCKER] [MAJOR] [MINOR] [NIT]\n- Suggest the specific fix, not just the concept\n\nNever: rewrite entire functions unless asked, mark SQL injection risks as minor, skip security findings.\n\nAlways end with: overall verdict (approve / request changes) + the single most important thing to fix." }
+      { filled: "Design a production system prompt for an AI assistant with these specs:\n\nRole: Senior code reviewer\nProduct context: In-IDE assistant for VS Code\nPrimary user: Mid-level developers shipping to production\nCore behaviors: Review for security, performance, readability; cite line numbers; explain the why behind every suggestion\nHard restrictions: Never rewrite entire files; never approve code with SQL injection risk; never skip security issues as 'minor'\nTone: Direct, technical, collegial\nOutput format: Markdown with severity tags" }
     ]
   },
   {
@@ -557,8 +552,7 @@ DESIRED OUTPUT INSTEAD:
 
 Diagnose what's causing the gap. Then give me 3 improved versions of the prompt, each taking a different approach (role-play, structured format, constraint-heavy). Rate each on precision and reliability.`,
     examples:[
-      { filled: "CURRENT PROMPT: 'List 5 startup ideas'\n\nACTUAL OUTPUT RECEIVED: 'Here are 5 startup ideas: 1. An app for dog owners 2. A marketplace for freelancers 3. An AI writing tool 4. A food delivery app 5. A fitness tracker'\n\nDESIRED OUTPUT INSTEAD: Specific, non-obvious ideas with a clear problem, target customer, and monetization angle. Not generic categories.\n\nDiagnose the gap and give me 3 improved prompt versions.",
-        output: "Root cause: No specificity constraints — model defaults to safe, recognizable categories. No persona, no format, no 'avoid generic ideas' guardrail.\n\nVersion 1 (constraint-heavy): 'List 5 startup ideas. Rules: each must target a B2B niche, must have a clear monetization model, must NOT be in: AI writing, food delivery, fitness, or marketplaces. Format: [Problem] → [Solution] → [Customer] → [Revenue model]'\n\nVersion 2 (role-play): 'You are a YC partner who has seen 10,000 pitches. List 5 startup ideas you haven't seen before that exploit a specific regulatory change or supply chain shift from the last 2 years.'\n\nVersion 3 (few-shot anchored): 'Here is an example of a good startup idea: [PASTE EXAMPLE]. Generate 5 more at this quality level.'" }
+      { filled: "CURRENT PROMPT: 'List 5 startup ideas'\n\nACTUAL OUTPUT RECEIVED: 'Here are 5 startup ideas: 1. An app for dog owners 2. A marketplace for freelancers 3. An AI writing tool 4. A food delivery app 5. A fitness tracker'\n\nDESIRED OUTPUT INSTEAD: Specific, non-obvious ideas with a clear problem, target customer, and monetization angle. Not generic categories.\n\nDiagnose the gap and give me 3 improved prompt versions." }
     ]
   },
 
@@ -584,8 +578,7 @@ Write production-quality code with:
 
 Don't write tests — just the implementation.`,
     examples:[
-      { filled: "I'm building a SaaS dashboard app.\n\nFeature I want: A notification bell icon in the navbar that shows an unread count badge, opens a dropdown with the last 10 notifications, and marks them all as read when opened.\n\nTech stack: Next.js 14, TypeScript, Tailwind CSS, React Query\nConstraints: Must work with our existing /api/notifications endpoint\nStyle: follow Airbnb conventions",
-        output: "// NotificationBell.tsx\nimport { useState } from 'react'\nimport { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'\n\nexport function NotificationBell() {\n  const [open, setOpen] = useState(false)\n  const qc = useQueryClient()\n  \n  const { data: notifications = [] } = useQuery({\n    queryKey: ['notifications'],\n    queryFn: () => fetch('/api/notifications').then(r => r.json())\n  })\n  \n  const unread = notifications.filter(n => !n.read).length\n  // ... mark-as-read mutation, dropdown render\n}" }
+      { filled: "I'm building a SaaS dashboard app.\n\nFeature I want: A notification bell icon in the navbar that shows an unread count badge, opens a dropdown with the last 10 notifications, and marks them all as read when opened.\n\nTech stack: Next.js 14, TypeScript, Tailwind CSS, React Query\nConstraints: Must work with our existing /api/notifications endpoint\nStyle: follow Airbnb conventions" }
     ]
   },
   {
@@ -614,8 +607,7 @@ Do this:
 3. Show the corrected code with changed lines highlighted in comments
 4. Mention any related issues I should watch for`,
     examples:[
-      { filled: "Here is my code that's failing:\n\n```python\nasync def get_user_data(user_id):\n    conn = psycopg2.connect(DB_URL)\n    cursor = conn.cursor()\n    cursor.execute('SELECT * FROM users WHERE id = %s', (user_id,))\n    return cursor.fetchone()\n```\n\nError: The function hangs and never returns when called from FastAPI endpoints under load.\n\nExpected behavior: Should return user row quickly\nWhat I've tried: Added async/await, didn't help",
-        output: "Root cause: You're using psycopg2 (synchronous) inside an async function. When FastAPI calls this under load, it blocks the entire event loop — all other requests freeze while waiting for the DB.\n\nFix: Use asyncpg or psycopg3's async driver:\n\n```python\nimport asyncpg\n\nasync def get_user_data(user_id):\n    conn = await asyncpg.connect(DB_URL)\n    row = await conn.fetchrow('SELECT * FROM users WHERE id = $1', user_id)\n    await conn.close()\n    return row\n```\n\nAlso watch out for: not using a connection pool (asyncpg.create_pool at startup) — creating a new connection per request will also bottleneck under load." }
+      { filled: "Here is my code that's failing:\n\n```python\nasync def get_user_data(user_id):\n    conn = psycopg2.connect(DB_URL)\n    cursor = conn.cursor()\n    cursor.execute('SELECT * FROM users WHERE id = %s', (user_id,))\n    return cursor.fetchone()\n```\n\nError: The function hangs and never returns when called from FastAPI endpoints under load.\n\nExpected behavior: Should return user row quickly\nWhat I've tried: Added async/await, didn't help" }
     ]
   },
   {
@@ -639,8 +631,7 @@ Apply these improvements:
 
 Show me: original → refactored, with a bullet list of every change made and why.`,
     examples:[
-      { filled: "Refactor this code for production readiness. Do NOT change functionality.\n\n```javascript\nfunction p(d) {\n  let r = []\n  for(let i=0;i<d.length;i++){\n    if(d[i].s == 1) {\n      r.push({n: d[i].n, e: d[i].e})\n    }\n  }\n  return r\n}\n```\n\nApply: clean naming, single responsibility, remove redundancy, comments where non-obvious.",
-        output: "/**\n * Filters users to only active accounts and returns their display info.\n * @param {User[]} users - Full user records from the database\n * @returns {ActiveUserSummary[]} Name and email of active users only\n */\nfunction getActiveUserSummaries(users) {\n  return users\n    .filter(user => user.status === 1) // status 1 = active account\n    .map(({ name, email }) => ({ name, email }))\n}\n\nChanges: renamed p→getActiveUserSummaries, d→users, r→result, s→status, n→name, e→email; for loop→filter+map; added JSDoc." }
+      { filled: "Refactor this code for production readiness. Do NOT change functionality.\n\n```javascript\nfunction p(d) {\n  let r = []\n  for(let i=0;i<d.length;i++){\n    if(d[i].s == 1) {\n      r.push({n: d[i].n, e: d[i].e})\n    }\n  }\n  return r\n}\n```\n\nApply: clean naming, single responsibility, remove redundancy, comments where non-obvious." }
     ]
   },
   {
@@ -664,8 +655,7 @@ Cover ALL of these:
 Use descriptive test names that read like specs: "should return X when Y".
 Add a brief comment above each group explaining what's being tested.`,
     examples:[
-      { filled: "Write a complete test suite for this function using Jest:\n\n```javascript\nfunction calculateDiscount(price, userTier) {\n  if (userTier === 'premium') return price * 0.8\n  if (userTier === 'basic') return price * 0.9\n  return price\n}\n```\n\nCover happy path, boundary values, type mismatches, error states.",
-        output: "describe('calculateDiscount', () => {\n  describe('premium tier', () => {\n    it('should apply 20% discount for premium users', () => {\n      expect(calculateDiscount(100, 'premium')).toBe(80)\n    })\n    it('should handle decimal prices correctly', () => {\n      expect(calculateDiscount(99.99, 'premium')).toBeCloseTo(79.99)\n    })\n  })\n  describe('edge cases', () => {\n    it('should return full price for unknown tier', () => {\n      expect(calculateDiscount(100, 'vip')).toBe(100)\n    })\n    it('should return 0 when price is 0', () => {\n      expect(calculateDiscount(0, 'premium')).toBe(0)\n    })\n    it('should handle undefined userTier', () => {\n      expect(calculateDiscount(100, undefined)).toBe(100)\n    })\n  })\n})" }
+      { filled: "Write a complete test suite for this function using Jest:\n\n```javascript\nfunction calculateDiscount(price, userTier) {\n  if (userTier === 'premium') return price * 0.8\n  if (userTier === 'basic') return price * 0.9\n  return price\n}\n```\n\nCover happy path, boundary values, type mismatches, error states." }
     ]
   },
   {
@@ -688,8 +678,7 @@ Structure your explanation:
 
 Use simple language. If I'd need to look something up to understand your explanation, explain that too.`,
     examples:[
-      { filled: "Explain this code as if I'm a developer who didn't write it and is seeing it for the first time:\n\n```javascript\nconst cache = new Map()\nexport function memoize(fn) {\n  return function(...args) {\n    const key = JSON.stringify(args)\n    if (cache.has(key)) return cache.get(key)\n    const result = fn.apply(this, args)\n    cache.set(key, result)\n    return result\n  }\n}\n```",
-        output: "One-sentence summary: A higher-order function that wraps any function to cache its results so repeated calls with the same arguments skip recomputing.\n\nStep-by-step: (1) A Map stores previous results. (2) memoize takes any function fn and returns a new function. (3) When called, it serializes the arguments to a string key. (4) If that key exists in cache, return the saved result immediately. (5) Otherwise, run the original fn, store the result, and return it.\n\nGotcha: The cache Map is module-level — it persists forever and is shared across all memoized functions. This is a memory leak risk in long-running processes. Better: create a new Map per memoized function." }
+      { filled: "Explain this code as if I'm a developer who didn't write it and is seeing it for the first time:\n\n```javascript\nconst cache = new Map()\nexport function memoize(fn) {\n  return function(...args) {\n    const key = JSON.stringify(args)\n    if (cache.has(key)) return cache.get(key)\n    const result = fn.apply(this, args)\n    cache.set(key, result)\n    return result\n  }\n}\n```" }
     ]
   },
   {
@@ -713,8 +702,7 @@ Requirements:
 
 Return only the function + types. No boilerplate imports unless critical.`,
     examples:[
-      { filled: "Write a clean TypeScript function to call this API:\n\nEndpoint: POST https://api.openai.com/v1/chat/completions\nAuth: Bearer token from process.env.OPENAI_API_KEY\nRequest payload: {model, messages, temperature}\nExpected response: {choices: [{message: {content: string}}]}\n\nRequirements: retry on 429 and 5xx with exponential backoff (max 3 retries), timeout after 30 seconds, typed response.",
-        output: "interface ChatResponse { choices: Array<{ message: { content: string } }> }\n\nasync function chatCompletion(\n  messages: {role: string, content: string}[],\n  model = 'gpt-4o',\n  temperature = 0.7\n): Promise<string> {\n  for (let attempt = 0; attempt < 3; attempt++) {\n    const controller = new AbortController()\n    const timeout = setTimeout(() => controller.abort(), 30_000)\n    try {\n      const res = await fetch('https://api.openai.com/v1/chat/completions', {\n        method: 'POST',\n        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${process.env.OPENAI_API_KEY}` },\n        body: JSON.stringify({ model, messages, temperature }),\n        signal: controller.signal\n      })\n      if (res.status === 429 || res.status >= 500) {\n        await new Promise(r => setTimeout(r, 2 ** attempt * 500))\n        continue\n      }\n      const data: ChatResponse = await res.json()\n      return data.choices[0].message.content\n    } finally { clearTimeout(timeout) }\n  }\n  throw new Error('OpenAI API failed after 3 retries')\n}" }
+      { filled: "Write a clean TypeScript function to call this API:\n\nEndpoint: POST https://api.openai.com/v1/chat/completions\nAuth: Bearer token from process.env.OPENAI_API_KEY\nRequest payload: {model, messages, temperature}\nExpected response: {choices: [{message: {content: string}}]}\n\nRequirements: retry on 429 and 5xx with exponential backoff (max 3 retries), timeout after 30 seconds, typed response." }
     ]
   },
   {
@@ -738,8 +726,7 @@ Format as a standard ADR:
 - Consequences (positive and negative)
 - Alternatives rejected (and why)`,
     examples:[
-      { filled: "Write an ADR for this decision: Use Supabase instead of building a custom auth + database layer\n\nContext: Early-stage SaaS, 2-person team, need auth + Postgres fast\nConstraints: 2 devs, 3-month runway, TypeScript stack\nOptions considered: Custom Express + JWT + RDS, Firebase, Supabase",
-        output: "# ADR-001: Use Supabase for auth and database\nStatus: Accepted\n\nContext: 2-person team with 3-month runway needs working auth and Postgres in days, not weeks.\n\nDecision: Use Supabase (managed Postgres + auth + realtime).\n\nRationale: Saves ~3 weeks of infra work. Row-level security handles multi-tenancy. Supabase Auth covers email, OAuth, and magic links out of the box.\n\nConsequences (+): Ship 3 weeks faster. (-): Vendor lock-in on auth schema. At scale, managed Postgres costs more than RDS.\n\nAlternatives rejected: Custom JWT auth — correct long-term but wrong for current runway. Firebase — NoSQL doesn't fit our relational data model.\n\nRevisit when: Revenue > $10k MRR or team > 5 engineers." }
+      { filled: "Write an ADR for this decision: Use Supabase instead of building a custom auth + database layer\n\nContext: Early-stage SaaS, 2-person team, need auth + Postgres fast\nConstraints: 2 devs, 3-month runway, TypeScript stack\nOptions considered: Custom Express + JWT + RDS, Firebase, Supabase" }
     ]
   },
 
@@ -761,8 +748,7 @@ Format:
 
 Rules: max 80 words total. Use active verbs. Skip filler phrases like 'working on' — be specific about outcomes.`,
     examples:[
-      { filled: "Convert these raw notes into a standup update.\n\nMy notes: finished auth PR finally, jake left review comments need to fix, waiting on sarah for the figma file for settings, blocked on backend for PR 204 which has been sitting 2 days, today want to do the dashboard skeleton\n\nRules: max 80 words. Active verbs. Be specific.",
-        output: "Yesterday: Shipped auth PR; resolved Jake's review comments.\nToday: Start dashboard skeleton component; follow up with Sarah on settings Figma file.\nBlockers: PR #204 waiting on backend review for 2 days — needs escalation." }
+      { filled: "Convert these raw notes into a standup update.\n\nMy notes: finished auth PR finally, jake left review comments need to fix, waiting on sarah for the figma file for settings, blocked on backend for PR 204 which has been sitting 2 days, today want to do the dashboard skeleton\n\nRules: max 80 words. Active verbs. Be specific." }
     ]
   },
   {
@@ -785,8 +771,7 @@ Do this:
 4. Recommend when to do deep work vs shallow work
 5. Highlight the ONE task that matters most today`,
     examples:[
-      { filled: "Here is my task list:\nReply to 9 emails, write Q3 roadmap doc, fix prod bug causing checkout failures, review 2 PRs, update readme, prep for 3pm investor call, groom next sprint tickets, refactor user service\n\nContext: 5 hours available today. Hard deadline: investor call at 3pm. Energy: high.\n",
-        output: "URGENT + IMPORTANT — do first:\n• Fix prod checkout bug (~90min) — revenue impact\n• Investor call prep (~45min) — hard deadline 3pm\n\nIMPORTANT, not urgent — schedule for PM:\n• Q3 roadmap doc (~2hr) — deep work, do after call\n\nDELEGATE or batch:\n• Review 2 PRs — ask team to prioritize one you're blocking\n• Reply emails — batch 25min at 4pm\n\nDROP today:\n• Update readme, refactor user service, sprint grooming — schedule for tomorrow\n\nYour one thing today: Fix the checkout bug before touching anything else." }
+      { filled: "Here is my task list:\nReply to 9 emails, write Q3 roadmap doc, fix prod bug causing checkout failures, review 2 PRs, update readme, prep for 3pm investor call, groom next sprint tickets, refactor user service\n\nContext: 5 hours available today. Hard deadline: investor call at 3pm. Energy: high.\n" }
     ]
   },
   {
@@ -810,8 +795,7 @@ Generate a meeting prep brief:
 5. Ideal outcome + acceptable outcome
 6. One-line opening statement to set the right tone`,
     examples:[
-      { filled: "Meeting type: Salary negotiation. In 2 days.\nWho: My engineering manager + HR\nTopic: Annual review, requesting 20% raise + senior title\nMy goal: Get the raise or a clear path with timeline\nTheir likely goal: Retain me without breaking salary bands\nContext: I've led 3 major projects this year, took on on-call rotation, market rate is 18-25% above my current salary",
-        output: "Objectives: (1) Anchor at 22% — gives room to land at 18% (2) Tie every ask to specific delivered impact (3) Get a number or a date, not 'we'll see'\n\nQuestions to ask: 'What would make this a clear yes?' / 'What's the band for senior eng at this level?' / 'What timeline are you thinking if not now?'\n\nObjections to prep for: 'Budget is tight' → 'What would the timeline look like when budget opens?' | 'You're not quite senior yet' → 'I'd love to understand what the gap is specifically'\n\nOpening line: 'I'm excited about where things are going — I wanted to have a direct conversation about compensation and title based on what I've taken on this year.'" }
+      { filled: "Meeting type: Salary negotiation. In 2 days.\nWho: My engineering manager + HR\nTopic: Annual review, requesting 20% raise + senior title\nMy goal: Get the raise or a clear path with timeline\nTheir likely goal: Retain me without breaking salary bands\nContext: I've led 3 major projects this year, took on on-call rotation, market rate is 18-25% above my current salary" }
     ]
   },
   {
@@ -840,8 +824,7 @@ Help me decide:
 5. Your recommendation with 1-paragraph rationale
 6. What information would change your recommendation`,
     examples:[
-      { filled: "I need to decide: Stay at my current job vs. join an early-stage startup as employee #8\n\nOptions: A: Stay — safe salary, boring work, clear career path. B: Join startup — 40% pay cut, 0.5% equity, more ownership, risky\n\nContext: 28 years old, 6 months expenses saved, no dependents. Gut leans: toward startup. What's making it hard: the pay cut.",
-        output: "Key tradeoff you need to accept: You're not choosing between safe and risky. You're choosing between financial safety now vs. optionality later. The pay cut is recoverable in 18 months if it fails.\n\nWhat your gut lean is missing: 0.5% sounds good but check: fully diluted cap table, preference stack, cliff/vest schedule. 0.5% of a $50M exit after 2x liquidation preference = ~$0.\n\nRed flags for Option B: No runway visibility past 12 months, CEO has never shipped a product, equity without anti-dilution protection.\n\nRecommendation: Take the startup IF you can verify 18+ months runway and the equity math works. At 28, with no dependents, this is the lowest-cost time in your career to take this bet.\n\nWhat would change this: If you have less than 3 months savings, delay until you do." }
+      { filled: "I need to decide: Stay at my current job vs. join an early-stage startup as employee #8\n\nOptions: A: Stay — safe salary, boring work, clear career path. B: Join startup — 40% pay cut, 0.5% equity, more ownership, risky\n\nContext: 28 years old, 6 months expenses saved, no dependents. Gut leans: toward startup. What's making it hard: the pay cut." }
     ]
   },
   {
@@ -868,8 +851,7 @@ Generate:
 5. One thing to protect on my calendar
 6. A one-sentence intention for next week`,
     examples:[
-      { filled: "What happened this week: Shipped user auth, missed the API docs deadline, had a tense 1:1 with manager about my communication, spent way too much time in meetings (est 14hrs), good gym sessions 4/5 days, read half of Staff Engineer book\n\nWhat felt off: Reactive all week, inbox always open, no deep work blocks\nMain goal for next week: Deliver API docs and fix async communication habits",
-        output: "Wins: Shipped auth (major milestone). Consistent gym (4/5 — protect this). Reading habit holding.\n\nPattern in what went wrong: 14hrs meetings + inbox always open = zero protected deep work. The missed docs deadline is a symptom of this, not a time management failure.\n\nOne thing to do differently: Block 9–11am as no-meeting deep work every day. Communicate this proactively.\n\nTop 3 priorities next week: (1) API docs — Tuesday EOD (2) Propose async-first comms norms to your manager (3) Retrospect on the 1:1 friction before it festers\n\nProtect on calendar: Tuesday 9–12am — heads-down docs writing. Decline everything.\n\nIntention: 'Proactive, not reactive.'" }
+      { filled: "What happened this week: Shipped user auth, missed the API docs deadline, had a tense 1:1 with manager about my communication, spent way too much time in meetings (est 14hrs), good gym sessions 4/5 days, read half of Staff Engineer book\n\nWhat felt off: Reactive all week, inbox always open, no deep work blocks\nMain goal for next week: Deliver API docs and fix async communication habits" }
     ]
   },
   {
@@ -895,8 +877,7 @@ Rewrite rules:
 
 Show 2 versions: one safe, one bolder.`,
     examples:[
-      { filled: "Rewrite this message for EMAIL.\n\nOriginal draft: 'Hey, just wanted to follow up again about the proposal I sent 2 weeks ago. Let me know if you had a chance to look at it. Thanks'\n\nGoal: Get them to book a call or give me a decision\nRecipient: Potential enterprise client, VP of Ops\nTone: Direct, warm\nProblem: Too passive, no clear ask\nMax 80 words.",
-        output: "Safe version — Subject: Re: [Your Company] Proposal — Quick question\nHi [Name], I wanted to check in on the proposal from two weeks ago. I'm happy to jump on a 20-minute call to walk through any questions — I have Thursday or Friday open. If the timing isn't right, a quick yes/no also helps me plan. Either way, I appreciate your time.\n\nBold version — Subject: Still worth 20 minutes?\nHi [Name], The proposal has been sitting for two weeks — I'm guessing it's either buried or not the right fit right now. If there's interest, I have Thursday 2pm free. If not, totally fine — just let me know and I'll stop following up." }
+      { filled: "Rewrite this message for EMAIL.\n\nOriginal draft: 'Hey, just wanted to follow up again about the proposal I sent 2 weeks ago. Let me know if you had a chance to look at it. Thanks'\n\nGoal: Get them to book a call or give me a decision\nRecipient: Potential enterprise client, VP of Ops\nTone: Direct, warm\nProblem: Too passive, no clear ask\nMax 80 words." }
     ]
   },
 
@@ -927,8 +908,7 @@ Format each issue as:
 
 End with: overall verdict + top 1 thing to fix before merge.`,
     examples:[
-      { filled: "You are a senior engineer. Review this code like a real PR.\n\n```python\ndef get_user(user_id):\n    query = f\"SELECT * FROM users WHERE id = {user_id}\"\n    result = db.execute(query)\n    return result\n```\n\nContext: Production API. PR goal: fetch user by ID.",
-        output: "[BLOCKER] Line 2: SQL injection vulnerability — user_id is interpolated directly into the query string. An attacker passing `1 OR 1=1` dumps the entire users table.\nFix: db.execute('SELECT * FROM users WHERE id = %s', (user_id,))\n\n[MAJOR] Line 2: SELECT * — fetches all columns including sensitive fields (password_hash, ssn). Specify columns explicitly.\n\n[MINOR] No error handling — if user not found, returns None silently. Add a 404 raise or explicit None check.\n\n[NIT] Function name: get_user is fine but get_user_by_id is clearer.\n\nVerdict: REQUEST CHANGES. Top fix before merge: parameterize the query. This is a critical security issue." }
+      { filled: "You are a senior engineer. Review this code like a real PR.\n\n```python\ndef get_user(user_id):\n    query = f\"SELECT * FROM users WHERE id = {user_id}\"\n    result = db.execute(query)\n    return result\n```\n\nContext: Production API. PR goal: fetch user by ID." }
     ]
   },
   {
@@ -951,8 +931,7 @@ Deliver:
 5. What you intentionally left out and why
 6. One thing that will become a problem at scale and how to mitigate it`,
     examples:[
-      { filled: "Design a database schema for: a multi-tenant project management app where each company has projects, projects have tasks, tasks are assigned to users.\n\nDatabase: PostgreSQL\nScale: thousands of companies, millions of tasks\nKey operations: list all tasks for a project, list tasks assigned to a user, filter tasks by status",
-        output: "CREATE TABLE tenants (id UUID PRIMARY KEY, name TEXT, created_at TIMESTAMPTZ DEFAULT now());\n\nCREATE TABLE users (id UUID PRIMARY KEY, tenant_id UUID REFERENCES tenants(id), email TEXT, UNIQUE(tenant_id, email));\n\nCREATE TABLE projects (id UUID PRIMARY KEY, tenant_id UUID REFERENCES tenants(id), name TEXT, created_at TIMESTAMPTZ DEFAULT now());\n\nCREATE TABLE tasks (id UUID PRIMARY KEY, project_id UUID REFERENCES projects(id), assignee_id UUID REFERENCES users(id), title TEXT, status TEXT CHECK (status IN ('todo','in_progress','done')), created_at TIMESTAMPTZ DEFAULT now());\n\n-- Indexes for key queries\nCREATE INDEX idx_tasks_project ON tasks(project_id, status);\nCREATE INDEX idx_tasks_assignee ON tasks(assignee_id, status);\n\nScale note: At 10M+ tasks, partition tasks table by tenant_id to keep index sizes manageable." }
+      { filled: "Design a database schema for: a multi-tenant project management app where each company has projects, projects have tasks, tasks are assigned to users.\n\nDatabase: PostgreSQL\nScale: thousands of companies, millions of tasks\nKey operations: list all tasks for a project, list tasks assigned to a user, filter tasks by status" }
     ]
   },
   {
@@ -980,8 +959,7 @@ Do this:
 4. Estimate performance improvement for each fix
 5. Suggest profiling tools/commands to verify the improvement`,
     examples:[
-      { filled: "This code is too slow.\n\n```javascript\nasync function getDashboardData(userId) {\n  const projects = await db.query('SELECT * FROM projects WHERE user_id = $1', [userId])\n  for (const project of projects.rows) {\n    project.tasks = await db.query('SELECT * FROM tasks WHERE project_id = $1', [project.id])\n    project.members = await db.query('SELECT * FROM members WHERE project_id = $1', [project.id])\n  }\n  return projects.rows\n}\n```\n\nCurrent: ~2400ms for a user with 12 projects. Target: under 200ms.",
-        output: "Bottleneck 1 (CRITICAL — ~2200ms): N+1 queries. For 12 projects you fire 24 sequential DB queries (12 tasks + 12 members). Each query has ~90ms latency = 2160ms wasted.\nFix: Use JOINs or batch with WHERE project_id = ANY($1)\n\nBottleneck 2 (~100ms): SELECT * fetches all columns including large text fields. Specify only needed columns.\n\nOptimized version:\n```javascript\nconst projects = await db.query('SELECT id, name FROM projects WHERE user_id = $1', [userId])\nconst ids = projects.rows.map(p => p.id)\nconst [tasks, members] = await Promise.all([\n  db.query('SELECT project_id, id, title, status FROM tasks WHERE project_id = ANY($1)', [ids]),\n  db.query('SELECT project_id, user_id, role FROM members WHERE project_id = ANY($1)', [ids])\n])\n// group tasks/members by project_id and attach\n```\nEstimated result: 3 queries total, ~180ms." }
+      { filled: "This code is too slow.\n\n```javascript\nasync function getDashboardData(userId) {\n  const projects = await db.query('SELECT * FROM projects WHERE user_id = $1', [userId])\n  for (const project of projects.rows) {\n    project.tasks = await db.query('SELECT * FROM tasks WHERE project_id = $1', [project.id])\n    project.members = await db.query('SELECT * FROM members WHERE project_id = $1', [project.id])\n  }\n  return projects.rows\n}\n```\n\nCurrent: ~2400ms for a user with 12 projects. Target: under 200ms." }
     ]
   },
   {
@@ -1005,8 +983,7 @@ Requirements:
 
 Deliver the full working script. Include a usage example at the top as a comment.`,
     examples:[
-      { filled: "Build a CLI tool in Node.js that does: scans a given directory recursively and finds all TODO and FIXME comments in .js and .ts files, prints them grouped by file with line numbers.\n\nInput: a directory path as the first argument, optional --ext flag to add more extensions\nOutput: formatted list to stdout, with a summary count at the end\nError handling: warn if directory doesn't exist, skip binary files",
-        output: "#!/usr/bin/env node\n// Usage: node find-todos.js ./src\n// node find-todos.js ./src --ext .py,.go\n\nimport { readdirSync, readFileSync, statSync } from 'fs'\nimport { join, extname } from 'path'\nimport { parseArgs } from 'util'\n\nconst { positionals, values } = parseArgs({\n  args: process.argv.slice(2),\n  options: { ext: { type: 'string', default: '' } },\n  allowPositionals: true\n})\n\nconst dir = positionals[0]\nconst exts = new Set(['.js', '.ts', ...values.ext.split(',').filter(Boolean)])\nlet total = 0\n\nfunction scan(path) {\n  // ... recursive scan, grep for TODO/FIXME, print with chalk colors\n}\n\nscan(dir)\nconsole.log(`\\n\\x1b[33mFound ${total} TODO/FIXME comments\\x1b[0m`)" }
+      { filled: "Build a CLI tool in Node.js that does: scans a given directory recursively and finds all TODO and FIXME comments in .js and .ts files, prints them grouped by file with line numbers.\n\nInput: a directory path as the first argument, optional --ext flag to add more extensions\nOutput: formatted list to stdout, with a summary count at the end\nError handling: warn if directory doesn't exist, skip binary files" }
     ]
   },
   {
@@ -1040,8 +1017,7 @@ Location: [LINE / FUNCTION]
 Attack scenario: [HOW AN ATTACKER WOULD EXPLOIT THIS]
 Fix: [EXACT CODE CHANGE]`,
     examples:[
-      { filled: "Perform a security audit on this code:\n\n```python\n@app.route('/api/files/<filename>')\ndef serve_file(filename):\n    file_path = f'/var/app/uploads/{filename}'\n    with open(file_path, 'r') as f:\n        return f.read()\n```\n\nContext: Public web API. It handles user-uploaded file retrieval.",
-        output: "[CRITICAL] Path traversal vulnerability. An attacker requesting filename='../../etc/passwd' reads arbitrary server files.\nAttack: GET /api/files/../../etc/passwd → returns system password file\nFix:\n```python\nimport os\nfrom pathlib import Path\n\nBASE_DIR = Path('/var/app/uploads').resolve()\n\n@app.route('/api/files/<filename>')\ndef serve_file(filename):\n    safe_path = (BASE_DIR / filename).resolve()\n    if not str(safe_path).startswith(str(BASE_DIR)):\n        abort(403)\n    with open(safe_path, 'r') as f:\n        return f.read()\n```\n\n[HIGH] No authentication — any user can access any file. Add @login_required.\n[MEDIUM] Returns raw file content with no Content-Type header — XSS risk if HTML files are stored." }
+      { filled: "Perform a security audit on this code:\n\n```python\n@app.route('/api/files/<filename>')\ndef serve_file(filename):\n    file_path = f'/var/app/uploads/{filename}'\n    with open(file_path, 'r') as f:\n        return f.read()\n```\n\nContext: Public web API. It handles user-uploaded file retrieval." }
     ]
   },
   {
@@ -1067,8 +1043,7 @@ Deliver:
 4. 3 edge cases it handles (and 1 it doesn't, if any)
 5. Performance note if it could be catastrophic backtracking risk`,
     examples:[
-      { filled: "I need a regex for: validate that a string is a valid slug (lowercase letters, numbers, hyphens only, no leading/trailing hyphens, no consecutive hyphens)\n\nLanguage: JavaScript\nUsage context: form validation\n✓ MATCH: my-blog-post, post-123, hello\n✗ NO MATCH: -bad-start, bad-end-, my--double, Has Spaces, CAPS",
-        output: "Pattern: /^[a-z0-9]+(?:-[a-z0-9]+)*$/\n\nBreakdown:\n^ — start of string\n[a-z0-9]+ — one or more lowercase letters or digits (the first segment)\n(?:-[a-z0-9]+)* — zero or more groups of: a single hyphen followed by letters/digits (prevents consecutive hyphens and trailing hyphens)\n$ — end of string\n\nUsage: const isValidSlug = s => /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(s)\n\nEdge case handled: 'my--post' fails because --would require two consecutive hyphen groups\nEdge case NOT handled: Unicode characters (ñ, é). Add \\p{Ll} with unicode flag if needed.\nPerformance: No backtracking risk — all quantifiers are possessive in nature here." }
+      { filled: "I need a regex for: validate that a string is a valid slug (lowercase letters, numbers, hyphens only, no leading/trailing hyphens, no consecutive hyphens)\n\nLanguage: JavaScript\nUsage context: form validation\n✓ MATCH: my-blog-post, post-123, hello\n✗ NO MATCH: -bad-start, bad-end-, my--double, Has Spaces, CAPS" }
     ]
   },
   {
@@ -1097,8 +1072,7 @@ Generate:
 5. Health check endpoint suggestion
 6. One thing that will catch most people out with this stack`,
     examples:[
-      { filled: "Generate deployment config for my app.\n\nApp type: Node.js API (Express)\nDeploy target: Docker + GitHub Actions → deploy to Fly.io\nEnvironment: Production\nStart command: node dist/server.js\nPort: 3000\nEnvironment variables needed: DATABASE_URL, JWT_SECRET, PORT\nHas a database: YES — Postgres (external, not containerized)\nBuild step: YES — tsc",
-        output: "# Dockerfile\nFROM node:20-alpine AS builder\nWORKDIR /app\nCOPY package*.json .\nRUN npm ci\nCOPY . .\nRUN npm run build\n\nFROM node:20-alpine\nWORKDIR /app\nCOPY package*.json .\nRUN npm ci --omit=dev\nCOPY --from=builder /app/dist ./dist\nEXPOSE 3000\nCMD [\"node\", \"dist/server.js\"]\n\n# .github/workflows/deploy.yml\n# on: push to main → fly deploy --remote-only\n\nGotcha: Set NODE_ENV=production in Fly secrets or npm won't optimize. Also set HEALTHCHECK in fly.toml pointing to GET /health or deploys will roll back silently." }
+      { filled: "Generate deployment config for my app.\n\nApp type: Node.js API (Express)\nDeploy target: Docker + GitHub Actions → deploy to Fly.io\nEnvironment: Production\nStart command: node dist/server.js\nPort: 3000\nEnvironment variables needed: DATABASE_URL, JWT_SECRET, PORT\nHas a database: YES — Postgres (external, not containerized)\nBuild step: YES — tsc" }
     ]
   },
   {
@@ -1123,8 +1097,7 @@ Give me:
 6. **Common mistakes** people make with this specific migration
 7. Estimated effort in hours for a solo dev`,
     examples:[
-      { filled: "I need to migrate from: CommonJS (require/module.exports) to ES Modules (import/export)\n\nFrom: Node.js 16, CJS throughout\nTo: Node.js 20, pure ESM\nCodebase: ~80 files, Express API + utility scripts\nTest coverage: ~40%\nCan I have downtime: NO — rolling deploy\nEstimate for solo dev",
-        output: "Risk assessment: High. CJS and ESM can't easily mix. __dirname and __filename don't exist in ESM. Dynamic require() breaks entirely.\n\nStep-by-step plan:\n1. Add type: 'module' to package.json in a branch (breaks everything — good to know scope)\n2. Run codemods: npx cjs-to-esm --target=esm src/\n3. Fix __dirname: replace with import.meta.dirname (Node 20.11+)\n4. Fix dynamic requires: convert to await import()\n5. Update Jest → Vitest (Jest CJS mode is painful for ESM)\n6. Deploy to staging, run integration tests\n7. Blue-green deploy to prod\n\nCommon mistake: Forgetting to add .js extension to all relative imports (ESM requires them).\nEstimated effort: 8–12 hours for 80 files with 40% test coverage." }
+      { filled: "I need to migrate from: CommonJS (require/module.exports) to ES Modules (import/export)\n\nFrom: Node.js 16, CJS throughout\nTo: Node.js 20, pure ESM\nCodebase: ~80 files, Express API + utility scripts\nTest coverage: ~40%\nCan I have downtime: NO — rolling deploy\nEstimate for solo dev" }
     ]
   },
 
@@ -1147,8 +1120,7 @@ For each direction:
 Spread across tones: playful, minimal, bold, editorial, nostalgic, provocative, technical, poetic.
 Avoid the first 3 ideas that come to mind — push past the obvious.`,
     examples:[
-      { filled: "Give me 10 creative directions for: a personal finance app targeting Gen Z freelancers\n\nTarget audience: 22–28, irregular income, distrust of banks, heavy TikTok/Instagram users\nConstraint: Mobile-only, must feel different from Mint or YNAB",
-        output: "1. Anti-budget — tracks spending moods, not categories. 'You spend $200 when stressed. Here's what triggers it.'\n2. Income smoothing — automatically moves % of every payment into a buffer to simulate a salary\n3. Tax-first design — every invoice you receive, it immediately moves 25% to a 'tax vault' so Q4 is never a crisis\n4. Social proof spending — shows what freelancers in your field spend on tools vs. you (opt-in benchmarks)\n5. Chaos mode — no budget, just a weekly 'financial weather' vibe score: ☀️ good / 🌩️ watch out\n6. Invoice tracker front and center — money you're owed is more important than money you've spent\n7. Future self letters — set a savings goal, AI writes a letter from your 35-year-old self about what this money became\n8. Guilt-free categories — tags like 'energy' and 'joy' instead of 'entertainment' and 'food'\n9. Peer squad — share financial goals (not amounts) with 3 friends, accountability without shame\n10. One number — single 'runway' figure: 'You have 47 days of expenses covered.'" }
+      { filled: "Give me 10 creative directions for: a personal finance app targeting Gen Z freelancers\n\nTarget audience: 22–28, irregular income, distrust of banks, heavy TikTok/Instagram users\nConstraint: Mobile-only, must feel different from Mint or YNAB" }
     ]
   },
   {
@@ -1171,8 +1143,7 @@ Generate a full creative brief:
 5. The one bold thing that differentiates this from everything else
 6. Anti-principles (what this design should NEVER feel like)`,
     examples:[
-      { filled: "Write a creative brief for a CLI-based developer tool that helps engineers write better git commit messages.\n\nTarget user: Backend engineers who write 'fix stuff' and 'wip' commits\nCore job: Help me write a commit message that will make sense in 6 months\nCompetitors/references to avoid: GitHub Copilot's generic suggestions\nOne word the UI should feel: Precise",
-        output: "Design direction: Terminal-native. No color gradients, no emoji bursts. Think man pages and vi — austere, respected, fast. The tool should feel like it was written by someone who has maintained a 10-year-old codebase.\n\nAesthetic: Dark terminal, monospace only, single accent color (amber #F5A623) for prompts and warnings. Zero decorative elements.\n\nTypography: JetBrains Mono for everything. No display fonts. Hierarchy through indentation and weight, not size.\n\nThe bold differentiator: Instead of suggesting a message, it asks 3 Socratic questions — 'What problem does this solve?', 'Who is affected?', 'What would break if this was reverted?' — and builds the message from your answers.\n\nAnti-principles: Never cheerful. Never uses the word 'great'. Never autocompletes silently without showing the user what changed." }
+      { filled: "Write a creative brief for a CLI-based developer tool that helps engineers write better git commit messages.\n\nTarget user: Backend engineers who write 'fix stuff' and 'wip' commits\nCore job: Help me write a commit message that will make sense in 6 months\nCompetitors/references to avoid: GitHub Copilot's generic suggestions\nOne word the UI should feel: Precise" }
     ]
   },
   {
@@ -1194,8 +1165,7 @@ Generate 20 names across these categories:
 
 For your top 5 picks: add a 6-word tagline + domain availability guess (.com, .io, .ai).`,
     examples:[
-      { filled: "Generate name options for: a browser extension that blocks distracting sites during focus sessions, tracks your productivity score, and lets you set intentions before each work block.\n\nTarget audience: knowledge workers, indie hackers\nVibe: focused, minimal, slightly serious\nMust avoid: anything with 'focus', 'block', 'flow' — all taken",
-        output: "Short punchy: Crest / Hone / Stead / Mast / Keel\nDescriptive: WorkGate / SessionLock / IntentBrowser / DeepDesk\nEvocative: Meridian ('highest point of the day') / Stillwater / Ironwood / Northstar / Vigil\nPortmanteaus: Focura / Clarix / Intentful / Zenit / Depthly\n\nTop 5 picks:\n1. Meridian — 'Your highest-focus hours, protected.' (.io available, strong imagery)\n2. Vigil — 'Stay on watch.' (.app likely available, intentional feeling)\n3. Hone — 'Sharpen the way you work.' (.com likely taken, .io available)\n4. Keel — 'Stay level, stay deep.' (nautical/stability metaphor, short)\n5. Stillwater — 'Deep work, undisturbed.' (evocative, memorable)" }
+      { filled: "Generate name options for: a browser extension that blocks distracting sites during focus sessions, tracks your productivity score, and lets you set intentions before each work block.\n\nTarget audience: knowledge workers, indie hackers\nVibe: focused, minimal, slightly serious\nMust avoid: anything with 'focus', 'block', 'flow' — all taken" }
     ]
   },
   {
@@ -1217,8 +1187,7 @@ Give me 7 non-obvious angles:
 - Why this will resonate with my audience specifically
 - The hook sentence (first line)`,
     examples:[
-      { filled: "I want to create content about: AI coding tools (Copilot, Cursor, etc.)\n\nPlatform: LinkedIn\nMy audience: Senior engineers and tech leads (25–45, skeptical of hype)\nWhat's already been said: 'AI will replace developers' / '10x your productivity' / 'the future of coding'\nMy unique position: I've used these tools daily for 18 months and seen where they actually fail",
-        output: "1. 'AI coding tools made me a worse programmer for 3 months before making me better' — the deskilling dip nobody talks about, with a recovery framework\n\n2. 'The 6 tasks where I never use Copilot' — specific failure modes: security-sensitive code, novel architecture, debugging async race conditions\n\n3. 'I reviewed 200 AI-generated PRs. Here's the pattern in every bug' — data-driven, engineers trust specifics over vibes\n\n4. 'My junior devs who use AI the most write the worst code' — controversial enough to generate debate, grounded in a real observation\n\n5. 'The prompt that replaced my most-used StackOverflow searches' — practical, immediately copyable, high-save content\n\nHook for #1: 'I used AI for every line of code for 60 days. By day 30, I couldn't solve a medium LeetCode problem without it. Here's what happened next.'" }
+      { filled: "I want to create content about: AI coding tools (Copilot, Cursor, etc.)\n\nPlatform: LinkedIn\nMy audience: Senior engineers and tech leads (25–45, skeptical of hype)\nWhat's already been said: 'AI will replace developers' / '10x your productivity' / 'the future of coding'\nMy unique position: I've used these tools daily for 18 months and seen where they actually fail" }
     ]
   },
   {
@@ -1243,8 +1212,7 @@ Script structure:
 
 Write naturally. Read it aloud while writing. Flag any line that sounds like ad copy.`,
     examples:[
-      { filled: "Write a 90-second script for Lumen — an AI that reads your calendar and emails and surfaces the 3 most important things to do each morning.\n\nAudience: Seed investors\nI want them to feel: Convinced this is a real pain they have\nPerception problem: 'This is just another productivity app'\nHero feature: The 3-card morning brief that takes 30 seconds to act on\nCTA: Book a demo call",
-        output: "Hook: 'Every morning, 47 million knowledge workers open 4 apps to figure out what to do first. Most give up and just check email.'\n\nProblem: You have more information than ever and less clarity than ever. Your calendar, email, and tasks don't talk to each other — you do the integration, manually, every morning, in your head.\n\nReveal: Lumen reads everything overnight. By the time you open your laptop, there are 3 cards. Not a list of 40 tasks. Three things, ranked by impact, with context pulled from your actual week.\n\nProof moment: [Show screen] This is a real founder's morning brief from Tuesday. She had 6 meetings, 94 emails, and 30 open tasks. Lumen surfaced: unblock the design team, follow up with the investor from Monday, and the one email that needed a same-day reply.\n\nCTA: 'If your mornings look like that — we'd love to show you yours. Link in bio to book 20 minutes.'" }
+      { filled: "Write a 90-second script for Lumen — an AI that reads your calendar and emails and surfaces the 3 most important things to do each morning.\n\nAudience: Seed investors\nI want them to feel: Convinced this is a real pain they have\nPerception problem: 'This is just another productivity app'\nHero feature: The 3-card morning brief that takes 30 seconds to act on\nCTA: Book a demo call" }
     ]
   },
   {
@@ -1269,8 +1237,7 @@ Post requirements:
 - Max 250 words
 - No emojis unless they add meaning`,
     examples:[
-      { filled: "Write a LinkedIn post based on this raw idea: I spent 6 months trying to improve my team's code review process. Every solution made it worse until I stopped trying to fix the process and started fixing the culture.\n\nMy audience: Engineering managers and senior engineers\nTone: Authentic builder\nGoal: Build brand, show leadership thinking",
-        output: "6 months of fixing our code review process.\nSlack reminders. SLA policies. Review checklists.\nAll of it made things worse.\n\nReviews got faster. Quality got worse. People stopped caring.\n\nThen I had a 1:1 with our best reviewer. He said: 'I don't review carefully anymore because no one reads my comments anyway.'\n\nThat was the real problem.\n\nWe weren't slow because of bad process.\nWe were slow because reviewers didn't feel heard.\n\nWe dropped the SLAs. Started requiring authors to respond to every comment — agree, disagree, or ask a question. Within 3 weeks, review quality went up on both sides.\n\nThe lesson: before you fix the system, find out why people stopped caring about it.\n\nWhat's a process problem that turned out to be a people problem for you?" }
+      { filled: "Write a LinkedIn post based on this raw idea: I spent 6 months trying to improve my team's code review process. Every solution made it worse until I stopped trying to fix the process and started fixing the culture.\n\nMy audience: Engineering managers and senior engineers\nTone: Authentic builder\nGoal: Build brand, show leadership thinking" }
     ]
   }
 ];
