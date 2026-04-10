@@ -1240,6 +1240,187 @@ Post requirements:
     examples:[
       { filled: "Write a LinkedIn post based on this raw idea: I spent 6 months trying to improve my team's code review process. Every solution made it worse until I stopped trying to fix the process and started fixing the culture.\n\nMy audience: Engineering managers and senior engineers\nTone: Authentic builder\nGoal: Build brand, show leadership thinking" }
     ]
+  },
+  {
+    tab:"coding", iconClass:"icon-code", badge:"badge-code", badgeLabel:"coding",
+    icon:"⌖",
+    title:"Surgical bug fixer",
+    desc:"Methodically debug issues, find the root cause, and apply precision fixes instead of full file rewrites.",
+    template:`I have a bug. Let's fix it methodically.
+
+Stack trace / Error message:
+[PASTE ERROR HERE]
+
+File(s) involved:
+\`\`\`[LANGUAGE]
+[PASTE RELEVANT CODE HERE]
+\`\`\`
+
+Instructions:
+1. Identify the root cause in one sentence.
+2. Propose a *surgical* fix (only show the exact lines to change, not the whole file).
+3. Explain *why* it failed to prevent it in the future.
+4. Think step-by-step before outputting the final fix. Use <thought> tags for your reasoning.`,
+    examples:[
+      { filled: "I have a bug. Let's fix it methodically.\n\nStack trace: TypeError: Cannot read properties of undefined (reading 'map')\n\nFile involved:\nfunction renderUsers(data) {\n  return data.users.map(u => u.name).join(', ');\n}" }
+    ]
+  },
+  {
+    tab:"coding", iconClass:"icon-code", badge:"badge-code", badgeLabel:"coding",
+    icon:"◬",
+    title:"New feature planner",
+    desc:"Map out the architecture, files, and edge cases for a new feature before writing code.",
+    template:`I want to add a new feature to my app.
+
+Feature description: [WHAT THE FEATURE DOES]
+Current stack: [TECH STACK, e.g., Next.js, Postgres, Tailwind]
+
+Instructions:
+Do NOT write the exact code yet. Instead, give me a step-by-step implementation plan.
+Break it down into:
+1. Database schema changes (if any)
+2. Backend API changes / endpoints
+3. Frontend component logic
+4. Edge cases & potential performance bottlenecks to look out for.`,
+    examples:[
+      { filled: "Feature: Add a 'Save for later' bookmarking feature to the article viewer.\nCurrent stack: React, Node, MongoDB\n\nGive me an implementation plan without writing the full code yet." }
+    ]
+  },
+  {
+    tab:"coding", iconClass:"icon-code", badge:"badge-code", badgeLabel:"coding",
+    icon:"⟜",
+    title:"Code translator",
+    desc:"Translate code correctly from one language or framework to another.",
+    template:`Translate this code entirely.
+
+Original code:
+\`\`\`[LANGUAGE]
+[PASTE ORIGINAL CODE]
+\`\`\`
+
+Target Language/Framework: [e.g. Python to Node, or React Class to React Hooks]
+
+Requirements:
+- Maintain all original logic and edge-case handling.
+- Use idiomatic patterns of the *new* language (don't write Python-style code in JavaScript).
+- Highlight any major architectural differences I need to be aware of.`,
+    examples:[
+      { filled: "Translate this code entirely.\n\nOriginal code:\nclass UserProfile extends React.Component { ... }\n\nTarget Framework: Modern React (Functional Components with Hooks)" }
+    ]
+  },
+  {
+    tab:"productivity", iconClass:"icon-prod", badge:"badge-prod", badgeLabel:"productivity",
+    icon:"✎",
+    title:"PR description writer",
+    desc:"Turn messy git diffs into clean, professional PR descriptions and commit messages.",
+    template:`Write a clean PR description and commit message for this change.
+
+git diff output:
+\`\`\`diff
+[PASTE GIT DIFF OR DESCRIBE CHANGES]
+\`\`\`
+
+Requirements:
+1. One clean commit message (e.g. \`feat: [summary]\` or \`fix: [summary]\`)
+2. PR Description containing:
+   - Summary of the change
+   - Technical approach
+   - Testing instructions (how to verify it works)`,
+    examples:[
+      { filled: "Write a clean PR description.\ngit diff: ... + added caching to the get_users endpoint using Redis. Fixed the timeout issue..." }
+    ]
+  },
+  {
+    tab:"coding", iconClass:"icon-code", badge:"badge-code", badgeLabel:"coding",
+    icon:"⊛",
+    title:"Edge-case analyzer",
+    desc:"Find the blind spots and extreme edge cases that will break your logic.",
+    template:`Review this function. I have handled the 'happy path'. 
+
+\`\`\`[LANGUAGE]
+[PASTE CODE HERE]
+\`\`\`
+
+Instructions:
+Give me a list of 10 extreme edge cases, weird inputs, or race conditions that will break this logic. 
+Focus on:
+- Null references and type mismatches
+- Concurrency issues
+- Extremely large or negative inputs
+- Timezone or encoding quirks
+
+Do not rewrite the code. Just list the vulnerabilities.`,
+    examples:[
+      { filled: "Review this function. I have handled the 'happy path'.\n\nfunction calculateMonthlyBilling(subscriptionTotal, daysActive) {\n  return (subscriptionTotal / 30) * daysActive;\n}\n\nGive me 10 extreme edge cases that break this logic." }
+    ]
+  },
+  {
+    tab:"coding", iconClass:"icon-code", badge:"badge-code", badgeLabel:"coding",
+    icon:"⟐",
+    title:"SQL query optimizer",
+    desc:"Restructure slow SQL queries for maximum performance and suggest indexes.",
+    template:`This SQL query is too slow and is timing out. Optimize it.
+
+Database: [Postgres / MySQL / SQL Server]
+Table structures:
+[PASTE RELEVANT SCHEMA OR DDL HERE]
+
+Slow Query:
+\`\`\`sql
+[PASTE SLOW QUERY HERE]
+\`\`\`
+
+Instructions:
+1. Explain *why* it's currently slow (e.g., nested subqueries, missing indexes).
+2. Rewrite the query for maximum performance.
+3. Suggest exactly which indexes I need to add to support your new query.`,
+    examples:[
+      { filled: "Database: Postgres\nSchema: users (id, name), orders (id, user_id, amount, created_at)\n\nSlow query:\nSELECT * FROM users WHERE id IN (SELECT user_id FROM orders WHERE amount > 1000)\n\nOptimize this query and suggest indexes." }
+    ]
+  },
+  {
+    tab:"coding", iconClass:"icon-code", badge:"badge-code", badgeLabel:"coding",
+    icon:"⧖",
+    title:"Async / Race-condition auditor",
+    desc:"Analyze complex multi-threaded or async code for race conditions and deadlocks.",
+    template:`Review this asynchronous code / multi-threading logic. 
+
+\`\`\`[LANGUAGE]
+[PASTE ASYNC/PROMISE/THREADING CODE HERE]
+\`\`\`
+
+Instructions:
+Identify any potential:
+1. Race conditions
+2. Deadlocks
+3. State staleness (e.g. outdated React state)
+4. Memory leaks caused by unhandled promises or open connections
+
+Explain the exact sequence of events that would trigger the issue, and provide a code snippet to fix it safely.`,
+    examples:[
+      { filled: "Review this async code for race conditions:\n\nlet cache = null;\nasync function getData() {\n  if (!cache) {\n    cache = await fetchDatabase();\n  }\n  return cache;\n}" }
+    ]
+  },
+  {
+    tab:"coding", iconClass:"icon-code", badge:"badge-code", badgeLabel:"coding",
+    icon:"◧",
+    title:"Accessibility (a11y) refactorer",
+    desc:"Refactor UI elements to be perfectly keyboard navigable and screen-reader ready.",
+    template:`Take this UI component and make it 100% accessible. 
+
+\`\`\`[LANGUAGE/FRAMEWORK]
+[PASTE UI COMPONENT CODE HERE]
+\`\`\`
+
+Requirements:
+- Do NOT change how it looks visually or alter the CSS classes.
+- Add correct ARIA labels and roles.
+- Ensure it can be navigated perfectly using only the 'Tab' key.
+- Ensure screen readers understand any state changes (e.g. expanding a dropdown).
+- Explain briefly what you added and why.`,
+    examples:[
+      { filled: "Make this component 100% accessible. Do not change the visual layout.\n\n<div class=\"custom-checkbox\" onclick=\"toggle()\">\n  <span class=\"check-icon\"></span>\n  Accept Terms\n</div>" }
+    ]
   }
 ];
 
