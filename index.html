@@ -1325,20 +1325,15 @@ function render() {
       const tpl = p.template.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\[([^\]]+)\]/g,'<span class="var">[$1]</span>');
       const examplesHtml = p.examples ? p.examples.map((e, ei) => {
         const filledEsc = e.filled.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
-        const outputEsc = e.output.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
         const filledKey = "ex_" + id + "_" + ei;
         EXAMPLE_MAP[filledKey] = e.filled;
         return "<div class=\"example-item\">"
           + "<div class=\"ex-input-block\">"
-          + "<div class=\"ex-row-label input-lbl\"><span class=\"ex-dot ex-dot-input\"></span>filled prompt</div>"
-          + "<div class=\"ex-text\">" + filledEsc + "</div>"
-          + "</div>"
-          + "<div class=\"ex-output-block\">"
-          + "<div class=\"ex-row-label output-lbl\" style=\"justify-content:space-between;\">"
-          + "<span style=\"display:flex;align-items:center;gap:5px;\"><span class=\"ex-dot ex-dot-output\"></span>sample output</span>"
+          + "<div class=\"ex-row-label input-lbl\" style=\"justify-content:space-between;\">"
+          + "<span style=\"display:flex;align-items:center;gap:5px;\"><span class=\"ex-dot ex-dot-input\"></span>filled prompt</span>"
           + "<button class=\"ex-copy-btn\" onclick=\"copyEx('" + filledKey + "')\" >copy prompt</button>"
           + "</div>"
-          + "<div class=\"ex-text\">" + outputEsc + "</div>"
+          + "<div class=\"ex-text\">" + filledEsc + "</div>"
           + "</div></div>";
       }).join("") : "";
 
