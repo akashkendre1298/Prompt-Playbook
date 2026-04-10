@@ -1421,6 +1421,26 @@ Requirements:
     examples:[
       { filled: "Make this component 100% accessible. Do not change the visual layout.\n\n<div class=\"custom-checkbox\" onclick=\"toggle()\">\n  <span class=\"check-icon\"></span>\n  Accept Terms\n</div>" }
     ]
+  },
+  {
+    tab:"coding", iconClass:"icon-code", badge:"badge-code", badgeLabel:"coding",
+    icon:"⟳",
+    title:"Frontend re-render optimizer",
+    desc:"Identify and fix unnecessary React/Vue component re-renders that kill performance.",
+    template:`Analyze this [React / Vue] component tree for performance leaks.
+
+\`\`\`[LANGUAGE/FRAMEWORK]
+[PASTE COMPONENT CODE HERE]
+\`\`\`
+
+Instructions:
+1. Identify exactly what state changes or prop mutations are causing unnecessary re-renders.
+2. Refactor the code using proper memoization (e.g. useMemo, useCallback) or state-lifting to fix the performance leak.
+3. Explain briefly why your refactored version is more performant.
+4. Think step-by-step in <thought> tags before writing code.`,
+    examples:[
+      { filled: "Analyze this React component tree for performance leaks.\n\nfunction Parent() {\n  const [count, setCount] = useState(0);\n  const config = { theme: 'dark' };\n  return <Child config={config} onClick={() => setCount(c => c+1)} />;\n}" }
+    ]
   }
 ];
 
