@@ -1288,7 +1288,7 @@ function render() {
     <div class="card-grid">`;
 
     items.forEach((p, i) => {
-      const id = `${tab}_${i}`;
+      const id = p.id;
       const tpl = p.template.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/\[([^\]]+)\]/g,'<span class="var">[$1]</span>');
       const examplesHtml = p.examples ? p.examples.map((e, ei) => {
         const filledEsc = e.filled.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
@@ -1348,7 +1348,7 @@ function copyPrompt(id, text) {
   const template = text !== undefined ? text : PROMPT_MAP[id];
   navigator.clipboard.writeText(template).catch(() => {
     const ta = document.createElement("textarea");
-    ta.value = text;
+    ta.value = template;
     document.body.appendChild(ta);
     ta.select();
     document.execCommand("copy");
@@ -1364,7 +1364,10 @@ function copyPrompt(id, text) {
 
 const PROMPT_MAP = {};
 const EXAMPLE_MAP = {};
-PROMPTS.forEach((p, i) => { PROMPT_MAP[p.tab + '_' + i] = p.template; });
+PROMPTS.forEach((p, i) => { 
+  p.id = "p_" + i;
+  PROMPT_MAP[p.id] = p.template; 
+});
 
 function copyEx(key) {
   const text = EXAMPLE_MAP[key];
